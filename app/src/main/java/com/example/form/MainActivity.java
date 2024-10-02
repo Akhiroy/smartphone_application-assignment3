@@ -46,14 +46,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Validate email
-        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+        String emailRegex = "^[a-zA-Z0-9._]+@[a-zA-Z0-9.]+\\.[a-zA-Z]{2,}$";
+        if (!email.matches(emailRegex)) {
             showToast("Invalid email format");
             return false;
         }
 
 
         // Validate Id (min 15 digits)
-        String idRegex = "018.[0-9]*.{12,}";
+        String idRegex = "^018\\d{13}$";
         if (!id.matches(idRegex)) {
             showToast("ID must contain at least 15 digits including first 018");
             return false;
@@ -69,10 +70,10 @@ public class MainActivity extends AppCompatActivity {
 
 
         
-        // Validate password (min 6 chars, at least one digit, one lowercase, one uppercase)
-        String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{6,}$";
+        // Validate password (min 8 chars, at least one digit, one lowercase, one uppercase)
+        String passwordRegex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}$";
         if (!password.matches(passwordRegex)) {
-            showToast("Password must contain at least 6 characters, one digit, one lowercase, and one uppercase letter");
+            showToast("Password must contain at least 8 characters, one digit, one lowercase, and one uppercase letter");
             return false;
         }
 
